@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   def create
     @item = @list.items.build(item_params)
     if @item.save
-      redirect_to [@list, @item], notice: 'Item criado com sucesso.'
+      redirect_to [ @list, @item ], notice: "Item criado com sucesso."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to [@list, @item], notice: 'Item atualizado com sucesso.'
+      redirect_to [ @list, @item ], notice: "Item atualizado com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to list_items_path(@list), notice: 'Item excluído com sucesso.'
+    redirect_to list_items_path(@list), notice: "Item excluído com sucesso."
   end
 
   private
