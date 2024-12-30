@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   resources :categories
-  # root "posts#index"
+  resources :lists
+  root "lists#index"
 end

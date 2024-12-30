@@ -1,0 +1,15 @@
+<%= form_with model: @list do |form| %>
+<div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+</div>
+
+<div>
+    <%= form.label :category_id, "Categoria" %>
+    <%= form.collection_select :category_id, @categories, :id, :name, prompt: "Selecione uma categoria" %>
+</div>
+
+<div>
+    <%= form.submit %>
+</div>
+<% end %>
