@@ -1,0 +1,15 @@
+<h1>Itens da Lista <%= @list.name %></h1>
+
+<%= link_to 'Novo Item', new_list_item_path(@list) %>
+
+<ul>
+    <% @items.each do |item| %>
+    <li>
+        <%= link_to item.name, [@list, item] %>
+        <%= link_to 'Editar', edit_list_item_path(@list, item) %>
+        <%= link_to 'Excluir', [@list, item], method: :delete, data: { confirm: 'Tem certeza?' } %>
+    </li>
+    <% end %>
+</ul>
+
+<%= link_to 'Voltar', lists_path %>
