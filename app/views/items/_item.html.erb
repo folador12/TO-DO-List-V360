@@ -1,0 +1,31 @@
+<div class="p-4 border rounded-lg bg-gray-50 shadow-sm hover:shadow-md transition-all">
+
+    <h3 class="text-lg font-semibold text-gray-800"><%= item.name %></h3>
+
+    <p class="text-gray-600 mt-1"><%= item.description %></p>
+
+    <p class="text-sm text-gray-500 mt-2">
+        Completado:
+        <span class="<%= item.completed ? 'text-green-600' : 'text-red-600' %>">
+            <%= item.completed ? 'Sim' : 'Não' %>
+        </span>
+    </p>
+
+    <div class="mt-4 flex space-x-4">
+
+        <% unless item.completed %>
+        <%= button_to "Concluir", complete_list_item_path(@list, item), 
+          method: :patch, 
+          class: "bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
+        <% end %>
+
+        <%= link_to 'Editar', edit_list_item_path(@list, item), 
+        class: "bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-all" %>
+
+        <%= link_to 'Excluir', [@list, item], 
+        method: :delete, 
+        data: { confirm: 'Tem certeza?' }, 
+        class: "bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
+
+    </div>
+</div>

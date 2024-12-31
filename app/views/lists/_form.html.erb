@@ -1,15 +1,24 @@
-<%= form_with model: @list do |form| %>
-<div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<%= form_with model: @list, class: "space-y-6 w-full" do |form| %>
+
+<div class="flex flex-col">
+    <%= form.label :name, class: "text-sm font-medium text-gray-700" %>
+    <%= form.text_field :name, 
+        class: "mt-1 border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
 </div>
 
-<div>
-    <%= form.label :category_id, "Categoria" %>
-    <%= form.collection_select :category_id, @categories, :id, :name, prompt: "Selecione uma categoria" %>
+<div class="flex flex-col">
+    <%= form.label :category_id, "Categoria", class: "text-sm font-medium text-gray-700" %>
+    <%= form.collection_select :category_id, @categories, :id, :name, 
+        { prompt: "Selecione uma categoria" }, 
+        class: "mt-1 border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
 </div>
 
-<div>
-    <%= form.submit %>
+<div class="flex justify-between items-center">
+
+    <%= link_to "Cancelar", @list.persisted? ? @list : lists_path, 
+        class: "text-primary hover:underline text-sm font-medium" %>
+
+    <%= form.submit "Salvar", 
+        class: "bg-primary hover:bg-primary/80 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
 </div>
 <% end %>

@@ -1,0 +1,33 @@
+<div class="max-w-2xl mx-auto p-6 bg-white shadow rounded-lg space-y-6 w-full">
+
+    <h1 class="text-2xl font-bold text-gray-800">
+        <%= action_name == 'new' ? 'Novo Item' : 'Editar Item' %>
+    </h1>
+
+
+    <%= form_with(model: [@list, @item], class: "space-y-6") do |form| %>
+
+    <div class="flex flex-col">
+        <%= form.label :name, "Nome", class: "text-sm font-medium text-gray-700" %>
+        <%= form.text_field :name, 
+          class: "mt-1 border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
+    </div>
+
+
+    <div class="flex flex-col">
+        <%= form.label :description, "Descrição", class: "text-sm font-medium text-gray-700" %>
+        <%= form.text_area :description, 
+          class: "mt-1 border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
+    </div>
+
+
+    <div class="flex justify-between items-center">
+
+        <%= link_to 'Voltar', list_path(@list), 
+          class: "text-primary hover:underline text-sm font-medium" %>
+
+        <%= form.submit "Salvar", 
+          class: "bg-primary hover:bg-primary/80 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
+    </div>
+    <% end %>
+</div>

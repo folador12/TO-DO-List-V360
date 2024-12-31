@@ -1,12 +1,25 @@
-<h1>Listas</h1>
+<div class="flex flex-col gap-4 w-full shadow bg-background p-4 rounded">
 
-<%= link_to "Nova Lista", new_list_path %>
+    <div class="flex flex-row justify-between items-center">
+        <h1 class="text-2xl font-bold text-text">Listas</h1>
 
-
-<div id="categories">
-    <% @lists.each do |list| %>
-    <div>
-        <%= link_to list.name, list %>
+        <%= link_to "Nova Lista", new_list_path, 
+            class: "bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded shadow transition-all" %>
     </div>
-    <% end %>
+
+    <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% if @lists.any? %>
+        <% @lists.each do |list| %>
+        <div class="p-4 border rounded shadow cursor-pointer bg-white hover:bg-gray-50 transition-all">
+            <%= link_to list.name, list, 
+                        class: "text-lg font-semibold text-text hover:text-primary transition-colors" %>
+        </div>
+        <% end %>
+        <% else %>
+        <p class="text-gray-500 text-center col-span-full">
+            Nenhuma lista encontrada. Clique em <strong>Nova Lista</strong> para começar!
+        </p>
+        <% end %>
+    </div>
+
 </div>

@@ -1,33 +1,28 @@
 class ItemsController < ApplicationController
   before_action :set_list
-  before_action :set_item, only: %i[show edit update destroy]
-
-  def index
-    @items = @list.items
-  end
-
-  def show
-  end
+  before_action :set_item, only: %i[edit update destroy complete]
 
   def new
     @item = @list.items.build
+    render 'form'
   end
 
   def create
     @item = @list.items.build(item_params)
     if @item.save
-      redirect_to [ @list, @item ], notice: "Item criado com sucesso."
+      redirect_to list_path(@list), notice: "Item criado com sucesso."
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    render 'form'
   end
 
   def update
     if @item.update(item_params)
-      redirect_to [ @list, @item ], notice: "Item atualizado com sucesso."
+      redirect_to list_path(@list), notice: "Item atualizado com sucesso."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +30,15 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to list_items_path(@list), notice: "Item excluído com sucesso."
+    redirect_to list_path(@list), notice: "Item excluído com sucesso."
+  end
+
+  def complete
+    if @item.update(completed: true)
+      redirect_to list_path(@list), notice: 'Item marcado como concluído.'
+    else
+      redirect_to list_path(@list), alert: 'Erro ao concluir o item.'
+    end
   end
 
   private
