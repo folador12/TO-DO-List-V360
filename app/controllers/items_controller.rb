@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = @list.items.build
-    render 'form'
+    render "form"
   end
 
   def create
@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    render 'form'
+    render "form"
   end
 
   def update
@@ -35,9 +35,9 @@ class ItemsController < ApplicationController
 
   def complete
     if @item.update(completed: true)
-      redirect_to list_path(@list), notice: 'Item marcado como concluído.'
+      redirect_to list_path(@list), notice: "Item marcado como concluído."
     else
-      redirect_to list_path(@list), alert: 'Erro ao concluir o item.'
+      redirect_to list_path(@list), alert: "Erro ao concluir o item."
     end
   end
 
