@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories
+  resources :categories, except: [ :show, :new ]
   resources :lists do
     resources :items, except: [ :index, :show ]  do
       member do

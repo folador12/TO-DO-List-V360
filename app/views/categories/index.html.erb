@@ -1,12 +1,39 @@
-<h1>Categorias</h1>
-
-<%= link_to "Nova Categoria", new_category_path %>
-
-
-<div id="categories">
-    <% @categories.each do |category| %>
-    <div>
-        <%= link_to category.name, category %>
+<div class="max-w-4xl mx-auto p-6 bg-white shadow rounded-lg space-y-6 w-full">
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Categorias</h1>
+        <%= link_to "Voltar", root_path, class: "text-primary hover:underline text-sm font-medium" %>
     </div>
-    <% end %>
+
+    <div class="p-4 border rounded-lg bg-gray-50 shadow-sm">
+        <%= form_with model: Category.new, url: categories_path, class: "flex space-x-4" do |form| %>
+        <div class="flex-grow">
+            <%= form.label :name, "Nova Categoria", class: "text-sm font-medium text-gray-700" %>
+            <%= form.text_field :name, 
+            class: "mt-1 block w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
+        </div>
+        <div>
+            <%= form.submit "Criar", 
+            class: "bg-primary hover:bg-primary/80 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
+        </div>
+        <% end %>
+    </div>
+
+    <div class="space-y-4 mt-6">
+        <% @categories.each do |category| %>
+        <div class="flex justify-between items-center p-4 border rounded-lg bg-gray-50 shadow-sm transition-all">
+            <div class="text-lg font-semibold text-gray-800 transition-colors">
+                <%= category.name%>
+            </div>
+
+            <div class="flex space-x-4">
+                <%= link_to "Editar", edit_category_path(category), 
+              class: "bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-1 px-3 rounded-lg transition-all" %>
+                <%= button_to "Excluir", category, 
+              method: :delete, 
+              data: { turbo_confirm: "Tem certeza?" }, 
+              class: "bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-3 rounded-lg shadow transition-all" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
 </div>
