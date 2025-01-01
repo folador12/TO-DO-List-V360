@@ -4,6 +4,13 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
+    if params[:search_name].present?
+      @lists = @lists.where("name ILIKE ?", "%#{params[:search_name]}%")
+    end
+    if params[:category_id].present?
+      @lists = @lists.where(category_id: params[:category_id])
+    end
+    @categories = Category.all
   end
 
   def show

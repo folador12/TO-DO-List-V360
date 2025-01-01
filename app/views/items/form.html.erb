@@ -10,6 +10,7 @@
     <div class="flex flex-col">
         <%= form.label :name, "Nome", class: "text-sm font-medium text-gray-700" %>
         <%= form.text_field :name, 
+          placeholder: "Digite o nome do item",
           class: "mt-1 border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
     </div>
 
@@ -17,6 +18,7 @@
     <div class="flex flex-col">
         <%= form.label :description, "Descrição", class: "text-sm font-medium text-gray-700" %>
         <%= form.text_area :description, 
+          placeholder: "Digite a descrição do item",
           class: "mt-1 border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
     </div>
 
