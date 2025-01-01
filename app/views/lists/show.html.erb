@@ -1,10 +1,22 @@
 <div class="max-w-4xl mx-auto p-6 bg-white shadow rounded-lg space-y-6 w-full">
 
-    <div class="flex flex-row gap-2 justify-cente items-center">
-        <div class="w-4 h-4 rounded-full" style="background-color: <%= @list.category.color %>" title="<%= @list.category.name %>">
+    <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-row gap-2 justify-cente items-center">
+            <div class="w-4 h-4 rounded-full" style="background-color: <%= @list.category.color %>" title="<%= @list.category.name %>">
+            </div>
+
+            <h1 class="text-3xl font-bold text-gray-800"><%= @list.name %></h1>
         </div>
 
-        <h1 class="text-3xl font-bold text-gray-800"><%= @list.name %></h1>
+        <div class="flex space-x-4">
+            <%= link_to "Editar", edit_list_path(@list), 
+          class: "bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-all" %>
+            <%= button_to "Excluir", @list, 
+          method: :delete, 
+          data: { turbo_confirm: "Tem certeza?" }, 
+          class: "bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
+        </div>
+
     </div>
 
     <p class="text-sm text-gray-500">Categoria: <span style="color: <%= @list.category.color%> "><%= @list.category.name %></span></p>
@@ -30,13 +42,6 @@
     <div class="flex justify-between items-center mt-6 border-t pt-4">
         <%= link_to "Voltar", lists_path, 
         class: "text-primary hover:underline text-sm font-medium" %>
-        <div class="flex space-x-4">
-            <%= link_to "Editar", edit_list_path(@list), 
-          class: "bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition-all" %>
-            <%= button_to "Excluir", @list, 
-          method: :delete, 
-          data: { turbo_confirm: "Tem certeza?" }, 
-          class: "bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
-        </div>
+
     </div>
 </div>
