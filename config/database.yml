@@ -16,9 +16,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-  password: 102029
-  host: localhost
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
 
 development:
   <<: *default
@@ -33,7 +33,7 @@ production:
     <<: *default
     database: to_do_list_v360_production
     username: to_do_list_v360
-    password: <%= ENV["TO_DO_LIST_V360_DATABASE_PASSWORD"] %>
+    password: <%= ENV["DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: to_do_list_v360_production_cache
