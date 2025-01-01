@@ -29,7 +29,7 @@
         <%= render 'items/item', item: item, list: @list %>
         <% end %>
         <% else %>
-        <p class="text-gray-500">Nenhum item adicionado ainda. Clique em "Adicionar item" para começar.</p>
+        <p class="text-gray-500">Nenhum item adicionado ainda. Clique em <strong> <%= link_to "Adicionar item", new_list_item_path(@list)%> </strong> para começar.</p>
         <% end %>
 
     </div>
