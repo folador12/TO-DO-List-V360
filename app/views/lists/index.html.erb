@@ -33,9 +33,15 @@
     <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         <% if @lists.any? %>
         <% @lists.each do |list| %>
-        <div class="p-4 border rounded shadow cursor-pointer bg-white hover:bg-gray-50 transition-all">
-            <%= link_to list.name, list, 
-                        class: "text-lg font-semibold text-text hover:text-primary transition-colors" %>
+        <div class="p-4 border rounded shadow cursor-pointer bg-white hover:bg-gray-50 transition-all flex flex-col">
+            <div class="flex items-center gap-2">
+                <% if list.category %>
+                <div class="w-4 h-4 rounded-full" style="background-color: <%= list.category.color %>" title="<%= list.category.name %>">
+                </div>
+                <% end %>
+                <%= link_to list.name, list, 
+                            class: "text-lg font-semibold text-text hover:text-primary transition-colors" %>
+            </div>
         </div>
         <% end %>
         <% else %>

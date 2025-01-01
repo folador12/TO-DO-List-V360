@@ -12,6 +12,7 @@
                 <%= form.text_field :name, 
                     placeholder: "Digite o nome da categoria",
                     class: "mt-1 block w-full border border-gray-300 rounded-lg p-2 text-gray-900 focus:ring-primary focus:border-primary" %>
+                <%= form.color_field :color, class: "mt-1 border border-gray-300 rounded-lg p-2 focus:ring-primary focus:border-primary h-10" %>
                 <%= form.submit "Criar", 
             class: "bg-primary hover:bg-primary/80 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
             </div>
@@ -23,7 +24,7 @@
     <div class="space-y-4 mt-6">
         <% @categories.each do |category| %>
         <div class="flex justify-between items-center p-4 border rounded-lg bg-gray-50 shadow-sm transition-all">
-            <div class="text-lg font-semibold text-gray-800 transition-colors">
+            <div class="text-lg font-semibold text-gray-800 transition-colors" style="color:<%=category.color%>">
                 <%= category.name%>
             </div>
 
