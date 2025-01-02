@@ -3,7 +3,9 @@
 one:
   name: MyString
   category: one
+  user: one
 
 two:
   name: MyString
   category: two
+  user: one

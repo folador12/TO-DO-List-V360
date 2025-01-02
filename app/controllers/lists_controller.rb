@@ -54,7 +54,7 @@ class ListsController < ApplicationController
 
     def set_categories
       @categories = current_user.categories
-    end    
+    end
 
     def list_params
       params.require(:list).permit(:name, :category_id)
