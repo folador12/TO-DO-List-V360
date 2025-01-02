@@ -3,14 +3,14 @@ class ListsController < ApplicationController
   before_action :set_categories, only: %i[ new edit create update ]
 
   def index
-    @lists = List.all
+    @lists = current_user.lists
     if params[:search_name].present?
       @lists = @lists.where("name ILIKE ?", "%#{params[:search_name]}%")
     end
     if params[:category_id].present?
       @lists = @lists.where(category_id: params[:category_id])
     end
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def show
@@ -21,7 +21,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.new(list_params)
     if @list.save
       redirect_to @list
     else
@@ -47,12 +47,14 @@ class ListsController < ApplicationController
 
   private
     def set_list
-      @list = List.find(params[:id])
+      @list = current_user.lists.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to lists_path, alert: "Lista não encontrada."
     end
 
     def set_categories
-      @categories = Category.all
-    end
+      @categories = current_user.categories
+    end    
 
     def list_params
       params.require(:list).permit(:name, :category_id)
